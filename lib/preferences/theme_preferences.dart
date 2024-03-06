@@ -6,7 +6,7 @@ ThemeData light = ThemeData(
   fontFamily: 'Poppins',
   useMaterial3: true,
   brightness: Brightness.light,
-  colorSchemeSeed: Colors.red,
+  colorSchemeSeed: Colors.blue,
   appBarTheme: const AppBarTheme(
     elevation: 0,
     scrolledUnderElevation: 0,
@@ -18,7 +18,7 @@ ThemeData light = ThemeData(
 ThemeData dark = ThemeData(
   fontFamily: 'Poppins',
   useMaterial3: true,
-  colorSchemeSeed: Colors.red,
+  colorSchemeSeed: Colors.blue,
   brightness: Brightness.dark,
   appBarTheme: const AppBarTheme(
       elevation: 0,

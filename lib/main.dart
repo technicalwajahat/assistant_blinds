@@ -1,6 +1,6 @@
 import 'package:assistant_blinds/preferences/theme_preferences.dart';
 import 'package:assistant_blinds/routes/approutes.dart';
-import 'package:assistant_blinds/widgets/loading_widget.dart';
+import 'package:assistant_blinds/views/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             theme: notifier.darkTheme ? dark : light,
             darkTheme: notifier.darkTheme ? dark : light,
             getPages: appRoutes(),
-            home: const LoadingScreen(),
+            home: const DashboardScreen(),
             builder: (context, child) {
               return MediaQuery(
                 data: MediaQuery.of(context)
