@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "319578323380",
+    "project_id": "assistant-blinds",
+    "storage_bucket": "assistant-blinds.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319578323380:android:b2028c4a73f989b47bdae1",
+        "android_client_info": {
+          "package_name": "com.technicalwajahat.assistant_blinds"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDQET7BPr1gnmTtPg2UYgdIhBWCjnHZvk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
