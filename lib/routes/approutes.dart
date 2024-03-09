@@ -1,5 +1,6 @@
-import 'package:assistant_blinds/views/chat_bot.dart';
-import 'package:assistant_blinds/views/text_to_speech.dart';
+import 'package:assistant_blinds/views/ChatBot/chat_bot.dart';
+import 'package:assistant_blinds/views/TextToSpeech/text_to_speech.dart';
+import 'package:assistant_blinds/views/TextToSpeech/view_speech.dart';
 import 'package:get/get.dart';
 
 import '../views/dashboard.dart';
@@ -17,6 +18,10 @@ appRoutes() => [
       GetPage(
         name: '/textToSpeech',
         page: () => const TextToSpeechScreen(),
+      ),
+      GetPage(
+        name: '/viewSpeech',
+        page: () => const ViewSpeech(),
       ),
       GetPage(
         name: '/chatBot',

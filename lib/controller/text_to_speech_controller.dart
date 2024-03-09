@@ -1,9 +1,21 @@
+import 'dart:io';
+
+import 'package:assistant_blinds/repository/text_to_speech_repository.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 
 class TextSpeechController extends GetxController {
   PlatformFile? pickedFilePath;
+
+  final _textToSpeechRepo = Get.put(TextToSpeechRepository());
+
+  void uploadDocument(File file, BuildContext context) async {
+    await _textToSpeechRepo.sendDocumentToAPI(file, context).then((value) {
+      Get.toNamed('/viewSpeech');
+    });
+  }
 
   Future<void> pickFiles() async {
     final result = await FilePicker.platform.pickFiles(

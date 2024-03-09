@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:assistant_blinds/widgets/appBar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/text_to_speech_controller.dart';
+import '../../controller/text_to_speech_controller.dart';
 
 class TextToSpeechScreen extends StatefulWidget {
   const TextToSpeechScreen({super.key});
@@ -86,7 +88,12 @@ class _TextToSpeechScreenState extends State<TextToSpeechScreen> {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            textToSpeechController.uploadDocument(
+                                File(textToSpeechController
+                                    .pickedFilePath!.path!),
+                                context);
+                          },
                           child: const AutoSizeText(
                             "Convert Text to Speech",
                             textAlign: TextAlign.center,
