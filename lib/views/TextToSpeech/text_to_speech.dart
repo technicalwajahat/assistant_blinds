@@ -56,7 +56,7 @@ class _TextToSpeechScreenState extends State<TextToSpeechScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: Get.height * 0.05),
+              SizedBox(height: Get.height * 0.03),
               textToSpeechController.pickedFilePath != null
                   ? Column(
                       children: [
