@@ -12,7 +12,6 @@ class TextToSpeechRepository extends GetxController {
   Future<http.StreamedResponse?> sendDocumentToAPI(
       File file, BuildContext context) async {
     try {
-      print(file);
       var request = http.MultipartRequest('POST', Uri.parse(""));
       var stream = http.ByteStream(file.openRead());
       var length = await file.length();

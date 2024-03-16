@@ -76,81 +76,116 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Card(
-                  elevation: 3,
-                  margin: EdgeInsets.zero,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                    child: AutoSizeText(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+          child: Column(
+            children: [
+              Image.asset("assets/blinds.png", width: 300),
+              SizedBox(height: Get.height * 0.01),
+              const Card(
+                elevation: 3,
+                margin: EdgeInsets.zero,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                  child: AutoSizeText(
+                    textAlign: TextAlign.center,
+                    "Kindness is a language which the deaf can hear and the blind can see!",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              SizedBox(height: Get.height * 0.02),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed('/textToSpeech');
+                      },
+                      child: Card(
+                        elevation: 5,
+                        margin: EdgeInsets.zero,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.document_scanner_rounded,
+                                  size: 34),
+                              SizedBox(height: Get.height * 0.01),
+                              const AutoSizeText(
+                                "Text to Speech",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: Get.width * 0.03),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed('/chatBot');
+                      },
+                      child: Card(
+                        elevation: 5,
+                        margin: EdgeInsets.zero,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.chat_rounded, size: 34),
+                              SizedBox(height: Get.height * 0.01),
+                              const AutoSizeText(
+                                "Chat Bot",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: Get.height * 0.02),
+              FilledButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                onPressed: () {
+                  Get.toNamed('/savedAudio');
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.save_alt_outlined, size: 20),
+                    SizedBox(width: Get.width * 0.03),
+                    const AutoSizeText(
+                      "Saved Audio's",
                       textAlign: TextAlign.center,
-                      "Kindness is a language which the deaf can hear and the blind can see!",
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                SizedBox(height: Get.height * 0.03),
-                FilledButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                  onPressed: () {
-                    Get.toNamed('/textToSpeech');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.library_books, size: 20),
-                      SizedBox(width: Get.width * 0.03),
-                      const AutoSizeText(
-                        "Text to Speech",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: Get.height * 0.02),
-                FilledButton(
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                  ),
-                  onPressed: () {
-                    Get.toNamed('/chatBot');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.chat, size: 20),
-                      SizedBox(width: Get.width * 0.03),
-                      const AutoSizeText(
-                        "Chat Bot",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
