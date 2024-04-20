@@ -115,7 +115,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   size: 34),
                               SizedBox(height: Get.height * 0.01),
                               const AutoSizeText(
-                                "Text to Speech",
+                                "Transcription",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,

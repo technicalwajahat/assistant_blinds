@@ -1,9 +1,9 @@
-import 'package:assistant_blinds/views/ChatBot/chat_bot.dart';
 import 'package:assistant_blinds/views/TextToSpeech/saved_audio.dart';
 import 'package:assistant_blinds/views/TextToSpeech/text_to_speech.dart';
 import 'package:assistant_blinds/views/TextToSpeech/view_speech.dart';
 import 'package:get/get.dart';
 
+import '../views/ChatBot/chat_bot.dart';
 import '../views/dashboard.dart';
 import '../widgets/loading_widget.dart';
 

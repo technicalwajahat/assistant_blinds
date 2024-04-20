@@ -19,9 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  #  sdk: '>=3.3.0 <4.0.0'
-  sdk: '>=3.0.0-409.0.dev <4.0.0'
-
+  sdk: '>=3.3.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -41,13 +39,16 @@ dependencies:
   provider: ^6.1.2
   open_file: ^3.3.2
   file_picker:
-  image_picker: ^1.0.7
+  animate_do: ^3.3.4
+  image_picker: ^1.1.0
   firebase_core:
+  speech_to_text: ^6.6.1
+  flutter_tts:
   auto_size_text: ^3.0.0
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.8
   cloud_firestore:
   firebase_storage:
-  shared_preferences: ^2.2.2
+  shared_preferences: ^2.2.3
   flutter_native_splash:
   font_awesome_flutter: ^10.7.0
   flutter_launcher_icons: ^0.13.1
