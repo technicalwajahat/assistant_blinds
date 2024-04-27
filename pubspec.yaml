@@ -50,6 +50,7 @@ dependencies:
   firebase_storage:
   shared_preferences: ^2.2.3
   flutter_native_splash:
+  syncfusion_flutter_pdf: ^25.1.41
   font_awesome_flutter: ^10.7.0
   flutter_launcher_icons: ^0.13.1
 
