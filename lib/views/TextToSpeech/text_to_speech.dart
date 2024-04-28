@@ -89,7 +89,7 @@ class _TextToSpeechScreenState extends State<TextToSpeechScreen> {
                             ),
                           ),
                           onPressed: () {
-                            textToSpeechController.uploadDocument(
+                            textToSpeechController.sendDocToAPI(
                                 File(textToSpeechController
                                     .pickedFilePath!.path!),
                                 context);

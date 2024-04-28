@@ -13,6 +13,11 @@ class _SavedAudioState extends State<SavedAudio> {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: AppBarWidget(text: "Saved Audios"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [],
+        ),
+      ),
     );
   }
 }

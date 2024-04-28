@@ -11,16 +11,23 @@ class TextSpeechController extends GetxController {
 
   final _textToSpeechRepo = Get.put(TextToSpeechRepository());
 
-  void uploadDocument(File file, BuildContext context) async {
+  // Send File to API
+  void sendDocToAPI(File file, BuildContext context) async {
     await _textToSpeechRepo.sendDocumentToAPI(file, context).then((value) {
       Get.toNamed('/viewSpeech');
     });
   }
 
+  // Fetch Audios From Firebase
+  void fetchAudios() async {
+    await _textToSpeechRepo.fetchAllAudios().then((value) => null);
+  }
+
+  // PickFiles from File Manager
   Future<void> pickFiles() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['ppt', 'pdf', 'doc', 'docx'],
+      allowedExtensions: ['pdf', 'doc', 'docx'],
       allowMultiple: false,
     );
     if (result != null) {
@@ -30,6 +37,7 @@ class TextSpeechController extends GetxController {
     }
   }
 
+  // Get File Size
   String getFileSizeText(int size) {
     if (size <= 1024) {
       return '$size bytes';
@@ -40,6 +48,7 @@ class TextSpeechController extends GetxController {
     }
   }
 
+  // Open File
   Future<void> openFile(String? filePath) async {
     await OpenFile.open(filePath);
   }
