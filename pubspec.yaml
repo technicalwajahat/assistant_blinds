@@ -1,5 +1,5 @@
 name: assistant_blinds
-description: "Blind Assistance"
+description: Blind Assistance - Flutter App
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -34,25 +34,25 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   http:
-  get: ^4.6.6
-  firebase_auth:
-  provider: ^6.1.2
-  open_file: ^3.3.2
   file_picker:
-  animate_do: ^3.3.4
-  image_picker: ^1.1.0
-  firebase_core:
-  speech_to_text: ^6.6.1
   flutter_tts:
-  auto_size_text: ^3.0.0
-  cupertino_icons: ^1.0.8
+  firebase_core:
+  firebase_auth:
   cloud_firestore:
   firebase_storage:
-  shared_preferences: ^2.2.3
   flutter_native_splash:
-  syncfusion_flutter_pdf: ^25.1.41
+  get: ^4.6.6
+  provider: ^6.1.2
+  open_file: ^3.3.2
+  animate_do: ^3.3.4
+  image_picker: ^1.1.0
+  speech_to_text: ^6.6.1
+  auto_size_text: ^3.0.0
+  cupertino_icons: ^1.0.8
+  shared_preferences: ^2.2.3
   font_awesome_flutter: ^10.7.0
   flutter_launcher_icons: ^0.13.1
+  syncfusion_flutter_pdf: ^25.1.41
 
 dev_dependencies:
   flutter_test:
