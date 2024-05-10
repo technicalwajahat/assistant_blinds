@@ -9,7 +9,6 @@ class GeminiAPIService {
     final content = [Content.text(prompt)];
     final response = await model.generateContent(content);
 
-    print(response.text);
     return response.text;
   }
 }
