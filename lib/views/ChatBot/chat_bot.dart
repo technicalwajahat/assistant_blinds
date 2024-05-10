@@ -2,6 +2,7 @@ import 'package:assistant_blinds/widgets/appBar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -78,11 +79,19 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: Get.height * 0.02),
+            Visibility(
+              visible: generatedContent == null,
+              child: Image.asset(
+                "assets/chatbot.png",
+                width: 140,
+                height: 140,
+              ),
+            ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              margin: const EdgeInsets.symmetric(horizontal: 40).copyWith(
-                top: 30,
-              ),
+              margin: const EdgeInsets.symmetric(horizontal: 40)
+                  .copyWith(top: 20, bottom: 10),
               decoration: BoxDecoration(
                   border: Border.all(
                       color: provider.darkTheme ? Colors.white : Colors.black),
@@ -91,26 +100,11 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: AutoSizeText(
                   generatedContent == null
-                      ? 'Hi, what task can I do for you?'
+                      ? 'Hi, Welcome to Gemini PRO?'
                       : generatedContent!,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: generatedContent == null ? 25 : 18,
-                  ),
-                ),
-              ),
-            ),
-            Visibility(
-              visible: generatedContent == null,
-              child: Container(
-                padding: const EdgeInsets.all(10),
-                alignment: Alignment.centerLeft,
-                margin: const EdgeInsets.only(top: 10, left: 22),
-                child: const AutoSizeText(
-                  'Here are a few features',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontSize: generatedContent == null ? 24 : 16,
                   ),
                 ),
               ),
@@ -123,7 +117,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                     color: Colors.lightGreen,
                     headerText: 'Gemini',
                     descriptionText:
-                        'A smarter way to stay organized and informed with Gemini',
+                        'A smarter way to stay organized and informed with Gemini Pro',
                   ),
                   FeatureBox(
                     color: Colors.lightGreen,
@@ -152,6 +146,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             initSpeechToText();
           }
         },
+        tooltip: "Voice Assistance",
         child: Icon(
           speechToText.isListening ? Icons.stop : Icons.mic,
         ),
