@@ -42,7 +42,7 @@ class FeatureBox extends StatelessWidget {
                 headerText,
                 style: TextStyle(
                   fontSize: 18,
-                  color: provider.darkTheme ? Colors.black : Colors.white,
+                  color: provider.darkTheme ? Colors.black : Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -54,7 +54,7 @@ class FeatureBox extends StatelessWidget {
                 descriptionText,
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    color: provider.darkTheme ? Colors.black : Colors.white),
+                    color: provider.darkTheme ? Colors.black : Colors.black),
               ),
             ),
           ],

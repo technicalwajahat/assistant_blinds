@@ -7,7 +7,7 @@ import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../preferences/theme_preferences.dart';
-import '../../repository/open_ai_service.dart';
+import '../../repository/gemini_ai_service.dart';
 import '../../widgets/feature_box.dart';
 
 class ChatBotScreen extends StatefulWidget {
@@ -20,12 +20,10 @@ class ChatBotScreen extends StatefulWidget {
 class _ChatBotScreenState extends State<ChatBotScreen> {
   final speechToText = SpeechToText();
   final flutterTts = FlutterTts();
-  String lastWords = '';
+  String prompt = '';
 
-  final OpenAIService openAIService = OpenAIService();
+  final GeminiAPIService geminiAIService = GeminiAPIService();
   String? generatedContent;
-  int start = 200;
-  int delay = 200;
 
   @override
   void initState() {
@@ -41,7 +39,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   Future<void> initSpeechToText() async {
     await speechToText.initialize();
-    systemSpeak("Hi, what task can I do for you?");
+    systemSpeak("Hi, How are you?");
     setState(() {});
   }
 
@@ -57,7 +55,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   void onSpeechResult(SpeechRecognitionResult result) {
     setState(() {
-      lastWords = result.recognizedWords;
+      prompt = result.recognizedWords;
     });
   }
 
@@ -76,7 +74,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   Widget build(BuildContext context) {
     final provider = Provider.of<ThemeNotifier>(context);
     return Scaffold(
-      appBar: const AppBarWidget(text: "ChatBot"),
+      appBar: const AppBarWidget(text: "Gemini Bot"),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -122,16 +120,16 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               child: const Column(
                 children: [
                   FeatureBox(
-                    color: Colors.lightBlue,
-                    headerText: 'ChatGPT',
+                    color: Colors.lightGreen,
+                    headerText: 'Gemini',
                     descriptionText:
-                        'A smarter way to stay organized and informed with ChatGPT',
+                        'A smarter way to stay organized and informed with Gemini',
                   ),
                   FeatureBox(
-                    color: Colors.lightBlue,
+                    color: Colors.lightGreen,
                     headerText: 'Smart Voice Assistant',
                     descriptionText:
-                        'Get the best of both worlds with a voice assistant powered by ChatGPT',
+                        'Get the best of both worlds with a voice assistant powered by Gemini',
                   ),
                 ],
               ),
@@ -144,15 +142,11 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           if (await speechToText.hasPermission && speechToText.isNotListening) {
             await startListening();
           } else if (speechToText.isListening) {
-            final speech = await openAIService.isArtPromptAPI(lastWords);
-            if (speech.contains('https')) {
-              generatedContent = null;
-              setState(() {});
-            } else {
-              generatedContent = speech;
-              setState(() {});
-              await systemSpeak(speech);
-            }
+            final speech = await geminiAIService.promptApi(prompt);
+            generatedContent = speech;
+            setState(() {});
+
+            await systemSpeak(speech.toString());
             await stopListening();
           } else {
             initSpeechToText();

@@ -141,10 +141,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.chat_rounded, size: 34),
+                              const Icon(Icons.settings_voice_rounded,
+                                  size: 34),
                               SizedBox(height: Get.height * 0.01),
                               const AutoSizeText(
-                                "Chat Bot",
+                                "Gemini Bot",
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w700,
