@@ -76,60 +76,101 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     final provider = Provider.of<ThemeNotifier>(context);
     return Scaffold(
       appBar: const AppBarWidget(text: "Gemini Bot"),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: Get.height * 0.02),
-            Visibility(
-              visible: generatedContent == null,
-              child: Image.asset(
-                "assets/chatbot.png",
-                width: 140,
-                height: 140,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: Get.height * 0.02),
+                  Visibility(
+                    visible: generatedContent == null,
+                    child: Image.asset(
+                      "assets/chatbot.png",
+                      width: 140,
+                      height: 140,
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    margin: const EdgeInsets.symmetric(horizontal: 40)
+                        .copyWith(top: 16, bottom: 10),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: provider.darkTheme
+                                ? Colors.white
+                                : Colors.black),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: AutoSizeText(
+                        generatedContent == null
+                            ? 'Hi, Welcome to Gemini PRO?'
+                            : generatedContent!.replaceAll("*", ""),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: generatedContent == null ? 24 : 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    visible: generatedContent == null,
+                    child: const Column(
+                      children: [
+                        FeatureBox(
+                          color: Colors.lightGreen,
+                          headerText: 'Gemini',
+                          descriptionText:
+                              'A smarter way to stay organized and informed with Gemini Pro',
+                        ),
+                        FeatureBox(
+                          color: Colors.lightGreen,
+                          headerText: 'Smart Voice Assistant',
+                          descriptionText:
+                              'Get the best of both worlds with a voice assistant powered by Gemini',
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              margin: const EdgeInsets.symmetric(horizontal: 40)
-                  .copyWith(top: 20, bottom: 10),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: provider.darkTheme ? Colors.white : Colors.black),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: AutoSizeText(
-                  generatedContent == null
-                      ? 'Hi, Welcome to Gemini PRO?'
-                      : generatedContent!,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: generatedContent == null ? 24 : 16,
+          ),
+          Visibility(
+            visible: generatedContent != null,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 20),
+              child: FilledButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
+                ),
+                onPressed: () {
+                  flutterTts.pause();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.stop_circle_rounded, size: 20),
+                    SizedBox(width: Get.width * 0.03),
+                    const AutoSizeText(
+                      "Stop Listening",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            Visibility(
-              visible: generatedContent == null,
-              child: const Column(
-                children: [
-                  FeatureBox(
-                    color: Colors.lightGreen,
-                    headerText: 'Gemini',
-                    descriptionText:
-                        'A smarter way to stay organized and informed with Gemini Pro',
-                  ),
-                  FeatureBox(
-                    color: Colors.lightGreen,
-                    headerText: 'Smart Voice Assistant',
-                    descriptionText:
-                        'Get the best of both worlds with a voice assistant powered by Gemini',
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
