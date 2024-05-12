@@ -6,7 +6,7 @@ class GeminiAPIService {
     final model = GenerativeModel(model: 'gemini-pro', apiKey: GEMINI_API_KEY);
 
     final prompt = geminiPrompt;
-    final content = [Content.text("Muhammad Wajahat Asif")];
+    final content = [Content.text(prompt)];
     final response = await model.generateContent(content);
 
     return response.text;
