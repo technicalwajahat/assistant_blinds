@@ -114,11 +114,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               const Icon(Icons.document_scanner_rounded,
                                   size: 34),
                               SizedBox(height: Get.height * 0.01),
-                              const AutoSizeText(
-                                "Transcription",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
+                              Semantics(
+                                enabled: true,
+                                label: "Now you are using Transcription",
+                                child: const AutoSizeText(
+                                  "Transcription",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                               ),
                             ],
@@ -144,11 +148,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               const Icon(Icons.settings_voice_rounded,
                                   size: 34),
                               SizedBox(height: Get.height * 0.01),
-                              const AutoSizeText(
-                                "Gemini Bot",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
+                              Semantics(
+                                enabled: true,
+                                label: "Now you are using Chat Bot",
+                                child: const AutoSizeText(
+                                  "ChatBot!",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                                 ),
                               ),
                             ],
@@ -160,30 +168,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ],
               ),
               SizedBox(height: Get.height * 0.02),
-              FilledButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                onPressed: () {
-                  Get.toNamed('/savedAudio');
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.save_alt_outlined, size: 20),
-                    SizedBox(width: Get.width * 0.03),
-                    const AutoSizeText(
-                      "Saved Audio's",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                      ),
+              Semantics(
+                label: "Your Saved Audios",
+                button: true,
+                child: FilledButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
-                  ],
+                  ),
+                  onPressed: () {
+                    Get.toNamed('/savedAudio');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.save_alt_outlined, size: 20),
+                      SizedBox(width: Get.width * 0.03),
+                      const AutoSizeText(
+                        "Saved Audio's",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

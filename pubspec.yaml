@@ -45,6 +45,8 @@ dependencies:
   hive: ^2.2.3
   provider: ^6.1.2
   open_file: ^3.3.2
+  http_parser:
+  avatar_glow: ^3.0.1
   image_picker: ^1.1.1
   speech_to_text: ^6.6.1
   auto_size_text: ^3.0.0

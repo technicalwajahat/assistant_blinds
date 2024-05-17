@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 import '../utils/utils.dart';
 
@@ -22,7 +23,10 @@ class TextToSpeechRepository extends GetxController {
   Future<http.StreamedResponse?> sendDocumentToAPI(
       File file, BuildContext context) async {
     try {
-      var request = http.MultipartRequest('POST', Uri.parse(""));
+      var request = http.MultipartRequest(
+          'POST', Uri.parse("http://10.0.2.2:8000/convert-to-audio"));
+      String contentType = getFileContentType(file);
+
       var stream = http.ByteStream(file.openRead());
       var length = await file.length();
       var multipartFile = http.MultipartFile('file', stream, length,
@@ -33,17 +37,27 @@ class TextToSpeechRepository extends GetxController {
 
       if (response.statusCode == 200) {
         Utils.snackBar("Document Sent Successfully", context);
-        // final responseData = await response.stream.toBytes();
-        // final audioContent = base64Decode(responseData as String);
+        final responseData = await response.stream.toBytes();
       } else {
         Utils.snackBar(
-            "Failed to send image. Error: ${response.statusCode}", context);
+            "Failed to send file. Error: ${response.statusCode}", context);
         return null;
       }
     } catch (e) {
-      Utils.snackBar("Error sending image: $e", context);
+      Utils.snackBar("Error sending file: $e", context);
       return null;
     }
     return null;
+  }
+}
+
+String getFileContentType(File file) {
+  String path = file.path.toLowerCase();
+  if (path.endsWith('.pdf')) {
+    return 'application/pdf';
+  } else if (path.endsWith('.doc') || path.endsWith('.docx')) {
+    return 'application/msword';
+  } else {
+    return 'application/octet-stream';
   }
 }

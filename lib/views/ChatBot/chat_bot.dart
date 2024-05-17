@@ -1,13 +1,12 @@
 import 'package:assistant_blinds/widgets/appBar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
-import '../../preferences/theme_preferences.dart';
 import '../../repository/gemini_ai_service.dart';
 import '../../widgets/feature_box.dart';
 
@@ -21,7 +20,9 @@ class ChatBotScreen extends StatefulWidget {
 class _ChatBotScreenState extends State<ChatBotScreen> {
   final speechToText = SpeechToText();
   final flutterTts = FlutterTts();
-  String prompt = '';
+  var prompt = 'ChatBot';
+
+  var isListening = false;
 
   final GeminiAPIService geminiAIService = GeminiAPIService();
   String? generatedContent;
@@ -40,13 +41,16 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   Future<void> initSpeechToText() async {
     await speechToText.initialize();
-    systemSpeak("Hi, How are you?");
+    systemSpeak("Hi, Welcome to ChatBot");
     setState(() {});
   }
 
   Future<void> startListening() async {
-    await speechToText.listen(onResult: onSpeechResult);
-    setState(() {});
+    await speechToText.listen(onResult: (result) {
+      setState(() {
+        prompt = result.recognizedWords;
+      });
+    });
   }
 
   Future<void> stopListening() async {
@@ -73,9 +77,8 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ThemeNotifier>(context);
     return Scaffold(
-      appBar: const AppBarWidget(text: "Gemini Bot"),
+      appBar: const AppBarWidget(text: "Voice ChatBot"),
       body: Column(
         children: [
           Expanded(
@@ -92,21 +95,13 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    margin: const EdgeInsets.symmetric(horizontal: 40)
-                        .copyWith(top: 16, bottom: 10),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: provider.darkTheme
-                                ? Colors.white
-                                : Colors.black),
-                        borderRadius: BorderRadius.circular(20)),
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: AutoSizeText(
                         generatedContent == null
-                            ? 'Hi, Welcome to Gemini PRO?'
+                            ? 'Hi, Welcome to ChatBot'
                             : generatedContent!.replaceAll("*", ""),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -121,15 +116,15 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                       children: [
                         FeatureBox(
                           color: Colors.lightGreen,
-                          headerText: 'Gemini',
+                          headerText: 'ChatBot',
                           descriptionText:
-                              'A smarter way to stay organized and informed with Gemini Pro',
+                              'A smarter way to stay organized and informed with Voice Chat',
                         ),
                         FeatureBox(
                           color: Colors.lightGreen,
                           headerText: 'Smart Voice Assistant',
                           descriptionText:
-                              'Get the best of both worlds with a voice assistant powered by Gemini',
+                              'Get the best of both worlds with a voice assistant.',
                         ),
                       ],
                     ),
@@ -138,58 +133,38 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               ),
             ),
           ),
-          Visibility(
-            visible: generatedContent != null,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 20),
-              child: FilledButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                onPressed: () {
-                  flutterTts.pause();
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.stop_circle_rounded, size: 20),
-                    SizedBox(width: Get.width * 0.03),
-                    const AutoSizeText(
-                      "Stop Listening",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          if (await speechToText.hasPermission && speechToText.isNotListening) {
-            await startListening();
-          } else if (speechToText.isListening) {
-            final speech = await geminiAIService.promptApi(prompt);
-            generatedContent = speech;
-            setState(() {});
-
-            await systemSpeak(speech.toString());
-            await stopListening();
-          } else {
-            initSpeechToText();
-          }
-        },
-        tooltip: "Voice Assistance",
-        child: Icon(
-          speechToText.isListening ? Icons.stop : Icons.mic,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: AvatarGlow(
+        glowColor: Colors.greenAccent,
+        repeat: true,
+        animate: isListening,
+        duration: const Duration(milliseconds: 3000),
+        child: FloatingActionButton(
+          onPressed: () async {
+            if (!isListening) {
+              setState(() {
+                isListening = true;
+              });
+              startListening();
+            } else {
+              setState(() {
+                isListening = false;
+              });
+              stopListening();
+              await geminiAIService.promptApi(prompt).then((response) {
+                setState(() {
+                  generatedContent = response;
+                });
+                systemSpeak(response.toString());
+              });
+            }
+          },
+          tooltip: "Voice Assistance",
+          child: Icon(
+            isListening ? Icons.stop_circle_rounded : Icons.mic,
+          ),
         ),
       ),
     );
