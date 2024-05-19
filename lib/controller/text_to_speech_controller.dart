@@ -18,11 +18,6 @@ class TextSpeechController extends GetxController {
     });
   }
 
-  // Fetch Audios From Firebase
-  void fetchAudios() async {
-    await _textToSpeechRepo.fetchAllAudios().then((value) => null);
-  }
-
   // PickFiles from File Manager
   Future<void> pickFiles() async {
     final result = await FilePicker.platform.pickFiles(
