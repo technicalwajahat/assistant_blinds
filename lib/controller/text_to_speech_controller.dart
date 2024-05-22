@@ -22,7 +22,7 @@ class TextSpeechController extends GetxController {
   Future<void> pickFiles() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['pdf', 'doc', 'docx'],
+      allowedExtensions: ['pdf', 'doc', 'docx', 'pptx'],
       allowMultiple: false,
     );
     if (result != null) {
