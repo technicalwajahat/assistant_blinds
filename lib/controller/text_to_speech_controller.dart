@@ -14,7 +14,7 @@ class TextSpeechController extends GetxController {
   // Send File to API
   void sendDocToAPI(File file, BuildContext context) async {
     await _textToSpeechRepo.sendDocumentToAPI(file, context).then((value) {
-      Get.toNamed('/viewSpeech');
+      Get.toNamed('/viewSpeech', arguments: value);
     });
   }
 
