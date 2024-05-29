@@ -18,13 +18,17 @@ class _SavedAudioState extends State<SavedAudio> {
   @override
   void initState() {
     super.initState();
+    getAudioFiles();
     _audioFiles = getAudioFiles();
   }
 
   Future<List<FileSystemEntity>> getAudioFiles() async {
-    final directory = await getExternalStorageDirectory();
-    final path = directory!.path;
-    final files = Directory(path).listSync(recursive: true);
+    Directory? musicDirectory = await getExternalStorageDirectory();
+    print(musicDirectory);
+    print(musicDirectory!.path);
+    String musicPath = '${musicDirectory.path}/Music';
+    print(musicPath);
+    final files = Directory(musicPath).listSync(recursive: true);
     print(files);
     return files.where((file) => file.path.endsWith('.mp3')).toList();
   }
@@ -33,7 +37,6 @@ class _SavedAudioState extends State<SavedAudio> {
     final player = AudioPlayer();
     await player.setAudioSource(AudioSource.uri(Uri.parse(filePath)));
     player.play();
-    // Optionally, handle player state changes and stop playing other audios
   }
 
   @override
@@ -50,9 +53,7 @@ class _SavedAudioState extends State<SavedAudio> {
               itemBuilder: (context, index) {
                 final file = files[index];
                 return ListTile(
-                  title: Text(file.path
-                      .split('/')
-                      .last), // Display filename
+                  title: Text(file.path.split('/').last), // Display filename
                   onTap: () => _playAudio(file.path),
                 );
               },

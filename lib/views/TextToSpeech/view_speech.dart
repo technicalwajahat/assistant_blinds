@@ -3,7 +3,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 
 class ViewSpeech extends StatefulWidget {
   const ViewSpeech({super.key});
@@ -19,18 +18,13 @@ class _ViewSpeechState extends State<ViewSpeech> {
   @override
   void initState() {
     super.initState();
+    flutterTts = FlutterTts();
     convertTextToSpeech(arguments);
   }
 
-  void convertTextToSpeech(String text,
-      {String fileName = 'tts_speech.mp3'}) async {
-    flutterTts = FlutterTts();
-
-    final appDirectory = await getExternalStorageDirectory();
-    String filePath = '${appDirectory!.path}/$fileName';
-
+  Future<void> convertTextToSpeech(String text) async {
     await flutterTts.speak(text);
-    await flutterTts.synthesizeToFile(text, filePath);
+    await flutterTts.synthesizeToFile(text, "blind_tts.mp3");
   }
 
   @override
