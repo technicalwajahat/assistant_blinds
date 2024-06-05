@@ -19,7 +19,7 @@ class _ViewSpeechState extends State<ViewSpeech> {
   void initState() {
     super.initState();
     flutterTts = FlutterTts();
-    convertTextToSpeech(arguments);
+    convertTextToSpeech("Wajahat Awan King!");
   }
 
   Future<void> convertTextToSpeech(String text) async {

@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: archive
-      sha256: "6bd38d335f0954f5fad9c79e614604fbf03a0e5b975923dd001b6ea965ef5b4b"
+      sha256: cb6a278ef2dbb298455e1a713bda08524a175630ec643a242c399c932a0a1f7d
       url: "https://pub.dev"
     source: hosted
-    version: "3.6.0"
+    version: "3.6.1"
   args:
     dependency: transitive
     description:
@@ -41,14 +41,62 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  audio_session:
-    dependency: transitive
+  audioplayers:
+    dependency: "direct main"
     description:
-      name: audio_session
-      sha256: a49af9981eec5d7cd73b37bacb6ee73f8143a6a9f9bd5b6021e6c346b9b6cf4e
+      name: audioplayers
+      sha256: "752039d6aa752597c98ec212e9759519061759e402e7da59a511f39d43aa07d2"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.19"
+    version: "6.0.0"
+  audioplayers_android:
+    dependency: transitive
+    description:
+      name: audioplayers_android
+      sha256: de576b890befe27175c2f511ba8b742bec83765fa97c3ce4282bba46212f58e4
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0"
+  audioplayers_darwin:
+    dependency: transitive
+    description:
+      name: audioplayers_darwin
+      sha256: e507887f3ff18d8e5a10a668d7bedc28206b12e10b98347797257c6ae1019c3b
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.0"
+  audioplayers_linux:
+    dependency: transitive
+    description:
+      name: audioplayers_linux
+      sha256: "3d3d244c90436115417f170426ce768856d8fe4dfc5ed66a049d2890acfa82f9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
+  audioplayers_platform_interface:
+    dependency: transitive
+    description:
+      name: audioplayers_platform_interface
+      sha256: "6834dd48dfb7bc6c2404998ebdd161f79cd3774a7e6779e1348d54a3bfdcfaa5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
+  audioplayers_web:
+    dependency: transitive
+    description:
+      name: audioplayers_web
+      sha256: db8fc420dadf80da18e2286c18e746fb4c3b2c5adbf0c963299dde046828886d
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.0"
+  audioplayers_windows:
+    dependency: transitive
+    description:
+      name: audioplayers_windows
+      sha256: "8605762dddba992138d476f6a0c3afd9df30ac5b96039929063eceed416795c2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   auto_size_text:
     dependency: "direct main"
     description:
@@ -388,10 +436,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_generative_ai
-      sha256: "35072cb63e4c0b0bab11735b60d9d2335c2b463b60358fd6c456a7286e649a5e"
+      sha256: "3de23ccdd2ae2035345f0592a1159a097e8b0a12ccc740a78a123e33cfae3c12"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.1"
+    version: "0.4.2"
   html:
     dependency: transitive
     description:
@@ -428,18 +476,18 @@ packages:
     dependency: "direct main"
     description:
       name: image_picker
-      sha256: "33974eca2e87e8b4e3727f1b94fa3abcb25afe80b6bc2c4d449a0e150aedf720"
+      sha256: "021834d9c0c3de46bf0fe40341fa07168407f694d9b2bb18d532dc1261867f7a"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   image_picker_android:
     dependency: transitive
     description:
       name: image_picker_android
-      sha256: c01a23e2dc3a71330e96705e08115f9e1d63780fc54f09b8a31d5e8a6881ca33
+      sha256: "4161e1f843d8480d2e9025ee22411778c3c9eb7e40076dcf2da23d8242b7b51c"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.12+2"
+    version: "0.8.12+3"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -452,10 +500,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker_ios
-      sha256: "4824d8c7f6f89121ef0122ff79bb00b009607faecc8545b86bca9ab5ce1e95bf"
+      sha256: "6703696ad49f5c3c8356d576d7ace84d1faf459afb07accbb0fae780753ff447"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.11+2"
+    version: "0.8.12"
   image_picker_linux:
     dependency: transitive
     description:
@@ -504,30 +552,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.9.0"
-  just_audio:
-    dependency: "direct main"
-    description:
-      name: just_audio
-      sha256: "5abfab1d199e01ab5beffa61b3e782350df5dad036cb8c83b79fa45fc656614e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.38"
-  just_audio_platform_interface:
-    dependency: transitive
-    description:
-      name: just_audio_platform_interface
-      sha256: "0243828cce503c8366cc2090cefb2b3c871aa8ed2f520670d76fd47aa1ab2790"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.3.0"
-  just_audio_web:
-    dependency: transitive
-    description:
-      name: just_audio_web
-      sha256: "0edb481ad4aa1ff38f8c40f1a3576013c3420bf6669b686fe661627d49bc606c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.4.11"
   leak_tracker:
     dependency: transitive
     description:
@@ -752,14 +776,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.2"
-  rxdart:
-    dependency: transitive
-    description:
-      name: rxdart
-      sha256: "0c7c0cedd93788d996e33041ffecda924cc54389199cde4e6a34b440f50044cb"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.27.7"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -885,6 +901,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  synchronized:
+    dependency: transitive
+    description:
+      name: synchronized
+      sha256: "539ef412b170d65ecdafd780f924e5be3f60032a1128df156adad6c5b373d558"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0+1"
   term_glyph:
     dependency: transitive
     description:
