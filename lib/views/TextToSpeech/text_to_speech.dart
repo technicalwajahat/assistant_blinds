@@ -24,7 +24,7 @@ class _TextToSpeechScreenState extends State<TextToSpeechScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child:
-            GetBuilder<TextSpeechController>(builder: (textToSpeechController) {
+        GetBuilder<TextSpeechController>(builder: (textToSpeechController) {
           return Column(
             children: [
               InkWell(
@@ -32,7 +32,10 @@ class _TextToSpeechScreenState extends State<TextToSpeechScreen> {
                   textToSpeechController.pickFiles();
                 },
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
                   child: Card(
                     elevation: 5,
                     margin: EdgeInsets.zero,
@@ -59,61 +62,63 @@ class _TextToSpeechScreenState extends State<TextToSpeechScreen> {
               SizedBox(height: Get.height * 0.03),
               textToSpeechController.pickedFilePath != null
                   ? Column(
-                      children: [
-                        ListTile(
-                          title: AutoSizeText(
-                            textToSpeechController.pickedFilePath!.name,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 14),
-                          ),
-                          subtitle: AutoSizeText(
-                            "File Size: ${textToSpeechController.getFileSizeText(textToSpeechController.pickedFilePath!.size)}",
-                          ),
-                          leading: const Icon(
-                            Icons.file_copy_rounded,
-                            size: 28,
-                          ),
-                          dense: true,
-                          trailing: IconButton(
-                            icon: const Icon(Icons.open_in_new_rounded),
-                            onPressed: () => textToSpeechController.openFile(
-                                textToSpeechController.pickedFilePath!.path),
-                          ),
-                        ),
-                        SizedBox(height: Get.height * 0.025),
-                        FilledButton(
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size.fromHeight(50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          onPressed: () {
-                            textToSpeechController.sendDocToAPI(
-                                File(textToSpeechController
-                                    .pickedFilePath!.path!),
-                                context);
-                          },
-                          child: const AutoSizeText(
-                            "Convert Text to Speech",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  : const Center(
-                      child: AutoSizeText(
-                        "Please Select Document",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
+                children: [
+                  ListTile(
+                    title: AutoSizeText(
+                      textToSpeechController.pickedFilePath!.name,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
+                    subtitle: AutoSizeText(
+                      "File Size: ${textToSpeechController.getFileSizeText(
+                          textToSpeechController.pickedFilePath!.size)}",
+                    ),
+                    leading: const Icon(
+                      Icons.file_copy_rounded,
+                      size: 28,
+                    ),
+                    dense: true,
+                    trailing: IconButton(
+                      icon: const Icon(Icons.open_in_new_rounded),
+                      onPressed: () =>
+                          textToSpeechController.openFile(
+                              textToSpeechController.pickedFilePath!.path),
+                    ),
+                  ),
+                  SizedBox(height: Get.height * 0.025),
+                  FilledButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                    )
+                    ),
+                    onPressed: () {
+                      textToSpeechController.sendDocToAPI(
+                          File(textToSpeechController
+                              .pickedFilePath!.path!),
+                          context);
+                    },
+                    child: const AutoSizeText(
+                      "Convert Text to Speech",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              )
+                  : const Center(
+                child: AutoSizeText(
+                  "Please Select Document",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
             ],
           );
         }),
