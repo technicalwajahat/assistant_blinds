@@ -102,7 +102,9 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                       child: AutoSizeText(
                         generatedContent == null
                             ? 'Hi, Welcome to ChatBot'
-                            : generatedContent!.replaceAll("*", ""),
+                            : generatedContent!
+                                .replaceAll("*", "")
+                                .replaceAll(".", ""),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: generatedContent == null ? 24 : 16,
