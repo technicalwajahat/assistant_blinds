@@ -45,7 +45,7 @@ dependencies:
   rxdart:
   provider: ^6.1.2
   open_file: ^3.3.2
-  just_audio: ^0.9.38
+  just_audio: ^0.9.39
   avatar_glow: ^3.0.1
   image_picker: ^1.1.2
   path_provider: ^2.1.3
