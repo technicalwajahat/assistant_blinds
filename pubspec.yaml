@@ -44,19 +44,19 @@ dependencies:
   get: ^4.6.6
   rxdart:
   provider: ^6.1.2
-  open_file: ^3.5.8
-  just_audio: ^0.9.41
+  open_file: ^3.5.10
+  just_audio: ^0.9.42
   avatar_glow: ^3.0.1
   image_picker: ^1.1.2
-  path_provider: ^2.1.4
+  path_provider: ^2.1.5
   speech_to_text: ^7.0.0
   flutter_native_splash:
   auto_size_text: ^3.0.0
   cupertino_icons: ^1.0.8
-  shared_preferences: ^2.3.2
+  shared_preferences: ^2.3.3
   permission_handler: ^11.3.1
   google_generative_ai: ^0.4.6
-  font_awesome_flutter: ^10.7.0
+  font_awesome_flutter: ^10.8.0
   flutter_launcher_icons: ^0.14.1
   audio_video_progress_bar: ^2.0.3
 
