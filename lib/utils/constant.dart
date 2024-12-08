@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = 'AIzaSyDBJSUdoLsmT-cTitBQMiWFa2D8H0hY_Ks';
+const GEMINI_API_KEY = '';
 
 const TYPE_PDF = ["pdf", "convert-pdf-to-audio"];
 const TYPE_DOCX = ["msword", "convert-docx-to-audio"];
